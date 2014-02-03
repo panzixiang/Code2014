@@ -349,6 +349,18 @@ public class MyPlayerBrain implements net.windward.Windwardopolis2.AI.IPlayerAI 
                     return;
             }
 
+            if(status == PlayerAIBase.STATUS.UPDATE) {
+            if (getMe().getLimo().getCoffeeServings() <= 1) {
+              Point nearestCoffeePoint = getCoffeeDest();
+              Integer distToNearestCoffee = SimpleAStar.CalculatePath(getGameMap(), getMe().getLimo().getMapPosition(), nearestCoffeePoint).size();
+              if (distToNearestCoffee < 5) {
+                ptDest = nearestCoffeePoint;
+              }
+
+            }
+
+          }
+
             DisplayOrders(ptDest);
 
             // get the path from where we are to the dest.
